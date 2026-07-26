@@ -1,0 +1,26 @@
+Paso 1: Abrir la terminal en la carpeta de tu proyecto
+Abre VS Code o la terminal
+
+Navega hasta la carpeta de tu proyecto:
+
+bash
+cd C:\Proyectos\web-tom\GRAVITY-GAMER
+
+Instalar si no tenemos las herramientas del Firebase
+npm install -g firebase-tools
+
+
+Paso 3: Iniciar sesión en Firebase
+bash
+firebase login
+
+Paso 4: Verificar que estás en el proyecto correcto
+bash
+firebase projects:list
+
+
+Paso 5: ¡Subir los cambios a Firebase!
+Cuando hayas hecho modificaciones en tus archivos (index.html, style.css, etc.), ejecuta:
+
+bash
+firebase deploy --only hosting
