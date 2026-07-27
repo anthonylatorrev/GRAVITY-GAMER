@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Express - Gravity-Gamer</title>
+    <meta name="description" content="Demuestra quién sabe más en batallas rápidas de preguntas sobre cultura pop, cine, videojuegos y más.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Botón de regreso -->
+        <a href="../index.html" class="back-home-link">🏠 Menú Principal</a>
+
+        <!-- Encabezado del Juego -->
+        <header class="game-header">
+            <div class="game-title-group">
+                <span class="title-icon">⚡</span>
+                <h1 class="game-title">Trivia Express</h1>
+            </div>
+            <p class="game-subtitle">¡Batallas rápidas de preguntas para tus reuniones!</p>
+        </header>
+
+        <!-- FASE 1: Selección de Modo de Juego -->
+        <section id="mode-phase" class="game-phase active">
+            <div class="card glass-card">
+                <h2>🎮 Selecciona el Modo</h2>
+                <p class="instruction-text">¿Cómo deseas jugar el día de hoy?</p>
+
+                <div class="mode-selection-grid">
+                    <div class="mode-card selected" id="mode-competitive-card" data-mode="competitive">
+                        <div class="mode-icon">🏆</div>
+                        <div class="mode-title">Competitivo</div>
+                        <div class="mode-desc">Por rondas y turnos. Compite con amigos por el 1er lugar del podio.</div>
+                    </div>
+                    <div class="mode-card" id="mode-free-card" data-mode="free">
+                        <div class="mode-icon">♾️</div>
+                        <div class="mode-title">Modo Libre</div>
+                        <div class="mode-desc">Preguntas infinitas para jugar solo o practicar sin límite de rondas.</div>
+                    </div>
+                </div>
+
+                <button id="mode-continue-btn" class="btn btn-primary">¡Continuar!</button>
+            </div>
+        </section>
+
+        <!-- FASE 2: Configuración de Jugadores y Rondas (Competitivo) -->
+        <section id="setup-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>⚙️ Configuración</h2>
+
+                <div class="form-group">
+                    <label for="player-count">¿Cuántos jugadores? (2 - 10)</label>
+                    <input type="number" id="player-count" min="2" max="10" value="4" class="input-field">
+                </div>
+
+                <div class="form-group">
+                    <label for="round-count">¿Cuántas Rondas?</label>
+                    <input type="number" id="round-count" min="1" max="10" value="5" class="input-field">
+                </div>
+
+                <button id="setup-continue-btn" class="btn btn-primary">¡Continuar a Categorías!</button>
+            </div>
+        </section>
+
+        <!-- FASE 3: Selección de Categorías -->
+        <section id="category-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>🎯 Categorías de Preguntas</h2>
+                <p class="instruction-text">Elige los temas con los que quieres jugar</p>
+
+                <div class="category-controls">
+                    <button id="select-all-cat-btn" class="btn btn-secondary btn-small">✓ Seleccionar Todas</button>
+                    <button id="deselect-all-cat-btn" class="btn btn-secondary btn-small">✗ Deseleccionar</button>
+                </div>
+
+                <div id="categories-container" class="categories-grid">
+                    <!-- Categorías inyectadas dinámicamente -->
+                </div>
+
+                <button id="categories-continue-btn" class="btn btn-primary">¡Continuar!</button>
+            </div>
+        </section>
+
+        <!-- FASE 4: Ingreso de Nombres de Jugadores -->
+        <section id="names-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>👥 Nombres de Participantes</h2>
+                <p class="instruction-text">Ingresa el nombre de cada jugador</p>
+                <div id="player-names-container" class="names-container">
+                    <!-- Inputs de nombres dinámicos -->
+                </div>
+                <button id="start-game-btn" class="btn btn-primary">¡Iniciar Partida! 🚀</button>
+            </div>
+        </section>
+
+        <!-- FASE 5: Espera de Turno del Jugador -->
+        <section id="turn-waiting-phase" class="game-phase">
+            <div class="card glass-card" style="text-align: center;">
+                <h2>🎯 Turno de <span id="current-player-turn-name" style="color: var(--comic-purple-dark);">Jugador 1</span></h2>
+                <p class="instruction-text" style="margin-top: 1rem;">
+                    Pasa el dispositivo a <strong id="waiting-player-name-bold">Jugador 1</strong> y presiona el botón cuando estés listo.
+                </p>
+                <div style="font-size: 4rem; margin: 1.5rem 0;">🧠</div>
+                <button id="start-turn-btn" class="btn btn-primary">¡Estoy Listo para Responder! ⚡</button>
+            </div>
+        </section>
+
+        <!-- FASE 6: Pantalla de Pregunta Activa -->
+        <section id="question-phase" class="game-phase">
+            <div class="card glass-card">
+                <div class="turn-header">
+                    <div class="turn-player">👤 <span id="active-player-name">Jugador 1</span></div>
+                    <div class="turn-round-info">Ronda <span id="current-round-num">1</span>/<span id="total-rounds-num">5</span></div>
+                </div>
+
+                <div class="question-box">
+                    <span id="question-category-tag" class="question-category-badge">Cultura Pop</span>
+                    <h3 id="question-text" class="question-text">¿Cargando pregunta...?</h3>
+                </div>
+
+                <div id="options-container" class="options-grid">
+                    <!-- 4 Botones de opciones A, B, C, D -->
+                </div>
+
+                <!-- Banner de Feedback -->
+                <div id="feedback-banner" class="feedback-banner hidden">
+                    <div id="feedback-title" class="feedback-title">¡CORRECTO! 🎉</div>
+                    <div id="feedback-explanation" class="feedback-explanation">Explicación rápida...</div>
+                </div>
+
+                <button id="next-turn-btn" class="btn btn-primary hidden">Siguiente ➡️</button>
+            </div>
+        </section>
+
+        <!-- FASE 7: Tabla de Posiciones al final de cada Ronda (Leaderboard) -->
+        <section id="leaderboard-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>📊 Clasificación - Ronda <span id="lb-round-num">1</span></h2>
+                <p class="instruction-text">¡Así van las puntuaciones hasta el momento!</p>
+
+                <div id="leaderboard-list" class="leaderboard-container">
+                    <!-- Filas dinámicas ordenadas por puntaje -->
+                </div>
+
+                <button id="next-round-btn" class="btn btn-primary">¡Comenzar Siguiente Ronda! 🚀</button>
+            </div>
+        </section>
+
+        <!-- FASE 8: Podio de Ganadores (Final) -->
+        <section id="podium-phase" class="game-phase">
+            <div class="card glass-card" style="text-align: center;">
+                <h2>🏆 ¡FIN DEL JUEGO! 🏆</h2>
+                <p class="instruction-text">¡Felicidades a los campeones de la Trivia Express!</p>
+
+                <div id="podium-container" class="podium-container">
+                    <!-- Podio de 3er, 2do y 1er lugar revelado con animación -->
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem;">
+                    <button id="play-again-btn" class="btn btn-primary">🔄 Jugar Otra Partida</button>
+                    <a href="../index.html" class="btn btn-secondary">🏠 Menú Principal</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 9: Modo Libre (Preguntas Infinitas) -->
+        <section id="free-mode-phase" class="game-phase">
+            <div class="card glass-card">
+                <div class="turn-header" style="background: var(--comic-cyan);">
+                    <div class="turn-player">♾️ MODO LIBRE</div>
+                    <div class="turn-round-info">Racha: 🔥 <span id="free-streak-count">0</span> | Correctas: <span id="free-total-correct">0</span></div>
+                </div>
+
+                <div class="question-box">
+                    <span id="free-category-tag" class="question-category-badge">Cultura Pop</span>
+                    <h3 id="free-question-text" class="question-text">¿Cargando pregunta...?</h3>
+                </div>
+
+                <div id="free-options-container" class="options-grid">
+                    <!-- Opciones modo libre -->
+                </div>
+
+                <div id="free-feedback-banner" class="feedback-banner hidden">
+                    <div id="free-feedback-title" class="feedback-title">¡CORRECTO!</div>
+                    <div id="free-feedback-explanation" class="feedback-explanation">Explicación...</div>
+                </div>
+
+                <button id="free-next-btn" class="btn btn-primary hidden">Siguiente Pregunta ➡️</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts de la Trivia -->
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>

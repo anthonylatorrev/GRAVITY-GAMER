@@ -4,137 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Impostor - Juego de Detectives</title>
-    <meta name="description" content="Juego del impostor - Descubre quién es el impostor entre tus amigos">
+    <title>Gravity-Gamer - Portal de Minijuegos para Amigos</title>
+    <meta name="description" content="Gravity-Gamer es la mejor plataforma de minijuegos gratis para jugar en grupo con tus amigos. ¡Juega a El Impostor y muchos más!">
+    
+    <!-- Open Graph / Meta de Redes Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gravity-Gamer - Portal de Minijuegos">
+    <meta property="og:description" content="Diviértete con tus amigos jugando minijuegos de detectives, palabras y deducci&oacute;n.">
+
+    <!-- Tipografía Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-        <header class="game-header">
-            <div class="logo-container">
-                <img src="img/logo2.png" alt="El Impostor Logo" class="logo-img">
-            </div>
-            <p class="game-subtitle">¿Podrás descubrir quién es el impostor? jajaja</p>
+        <!-- Encabezado Principal de la Plataforma -->
+        <header class="portal-header">
+            <span class="brand-badge">🎮 Portal de Minijuegos</span>
+            <h1 class="portal-title">Gravity-Gamer</h1>
+            <p class="portal-subtitle">¡La mejor colección de juegos en grupo para jugar con tus amigos!</p>
         </header>
 
-        <!-- Fase 1: Configuración del juego -->
-        <section id="setup-phase" class="game-phase active">
-            <div class="card glass-card">
-                <h2>⚙️ Configurar Juego</h2>
-
-                <div class="form-group">
-                    <label for="player-count">¿Cuántos jugadores?</label>
-                    <input type="text" id="player-count" value="5" class="input-field"
-                        placeholder="Número de jugadores">
-                </div>
-
-                <div id="custom-word-group" class="form-group hidden">
-                    <label for="custom-word">Palabra o Tema Personalizado</label>
-                    <input type="text" id="custom-word" class="input-field" placeholder="Ej: Toy Story, Pizza, etc.">
-                    <p class="helper-text">💡 Modo personalizado activado</p>
-                </div>
-
-                <div id="custom-player-count-group" class="form-group hidden">
-                    <label for="custom-player-count">Número de Jugadores</label>
-                    <input type="number" id="custom-player-count" min="3" max="10" value="5" class="input-field">
-                </div>
-
-                <button id="set-players-btn" class="btn btn-primary">¡Continuar!</button>
+        <!-- Sección de Minijuegos -->
+        <main class="games-section" style="width: 100%;">
+            <div class="section-header">
+                <h2 class="section-title"><span>🎲</span> Selección de Juegos</h2>
+                <div class="section-line"></div>
             </div>
-        </section>
 
-        <!-- Fase 2: Selección de Categorías -->
-        <section id="category-phase" class="game-phase">
-            <div class="card glass-card">
-                <h2>🎯 Selecciona las Categorías</h2>
-                <p class="instruction-text">Elige los temas de palabras con los que quieres jugar</p>
-
-                <div class="category-controls">
-                    <button id="select-all-btn" class="btn btn-secondary btn-small">✓ Seleccionar Todas</button>
-                    <button id="deselect-all-btn" class="btn btn-secondary btn-small">✗ Deseleccionar Todas</button>
-                </div>
-
-                <div id="categories-container" class="categories-grid">
-                    <!-- Categories will be generated dynamically -->
-                </div>
-
-                <button id="confirm-categories-btn" class="btn btn-primary" disabled>¡Continuar!</button>
-            </div>
-        </section>
-
-        <!-- Fase 3: Ingreso de nombres -->
-        <section id="names-phase" class="game-phase">
-            <div class="card glass-card">
-                <h2>👥 Nombres de Jugadores</h2>
-                <div id="player-names-container" class="names-container"></div>
-                <button id="start-game-btn" class="btn btn-primary">¡Iniciar Juego!</button>
-            </div>
-        </section>
-
-        <!-- Fase 4: Revelación de roles -->
-        <section id="reveal-phase" class="game-phase">
-            <div class="card glass-card reveal-card">
-                <div id="reveal-waiting" class="reveal-waiting">
-                    <h2>🎭 Turno de <span id="current-player-name" class="highlight-text"></span></h2>
-                    <p class="instruction-text">Pasa el dispositivo a este jugador y haz clic en el botón</p>
-                    <button id="reveal-role-btn" class="btn btn-primary btn-large">👀 Ver Mi Rol</button>
-                </div>
-
-                <div id="reveal-content" class="reveal-content hidden">
-                    <div id="role-display" class="role-display">
-                        <!-- Contenido dinámico del rol -->
+            <div class="games-grid">
+                <!-- Tarjeta del Juego 1: Descubre al Impostor (ACTIVO) -->
+                <article class="game-card">
+                    <div class="card-header-banner">
+                        <span class="card-tag tag-active">🔥 ¡DISPONIBLE!</span>
+                        <img src="impostor/img/logo2.png" alt="El Impostor Logo" class="game-logo-img">
                     </div>
-                    <button id="next-player-btn" class="btn btn-secondary">➡️ Siguiente Participante</button>
-                </div>
+                    <div class="card-body">
+                        <h3 class="game-title">Descubre al Impostor</h3>
+                        <p class="game-description">
+                            Juego de detectives y deducción social. ¿Podrás descubrir quién es el impostor del grupo antes de que sea demasiado tarde?
+                        </p>
+                        <div class="game-meta">
+                            <span class="meta-badge">👥 3-10 Jugadores</span>
+                            <span class="meta-badge">🕵️‍♂️ Deducción</span>
+                            <span class="meta-badge">⚡ Rápido</span>
+                        </div>
+                        <a href="impostor/index.html" class="btn btn-primary" id="play-impostor-btn">
+                            ¡JUGAR AHORA! 🚀
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta del Juego 2: Trivia Express (ACTIVO) -->
+                <article class="game-card">
+                    <div class="card-header-banner">
+                        <span class="card-tag tag-active">⚡ ¡DISPONIBLE!</span>
+                        <div class="game-icon-placeholder">⚡</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="game-title">Trivia Express</h3>
+                        <p class="game-description">
+                            Demuestra quién sabe más en batallas rápidas de preguntas sobre cultura pop, cine, videojuegos y más.
+                        </p>
+                        <div class="game-meta">
+                            <span class="meta-badge">👥 2-10 Jugadores</span>
+                            <span class="meta-badge">🏆 Rondas & Turnos</span>
+                            <span class="meta-badge">❓ Cultura Pop</span>
+                        </div>
+                        <a href="trivia/index.html" class="btn btn-primary" id="play-trivia-btn">
+                            ¡JUGAR AHORA! 🚀
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta de Ejemplo Próximamente 2 -->
+                <article class="game-card card-disabled">
+                    <div class="card-header-banner">
+                        <span class="card-tag tag-soon">🔒 PRÓXIMAMENTE</span>
+                        <div class="game-icon-placeholder">✏️</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="game-title">Palabras Prohibidas</h3>
+                        <p class="game-description">
+                            Haz que tu equipo adivine la palabra secreta sin mencionar ninguna de las palabras tabú. ¡Adictivo y divertido!
+                        </p>
+                        <div class="game-meta">
+                            <span class="meta-badge">👥 4+ Jugadores</span>
+                            <span class="meta-badge">🗣️ Equipos</span>
+                        </div>
+                        <button class="btn btn-disabled" disabled>
+                            PRÓXIMAMENTE ⏳
+                        </button>
+                    </div>
+                </article>
             </div>
-        </section>
-
-        <!-- Fase 5: Votación -->
-        <section id="voting-phase" class="game-phase">
-            <div class="card glass-card">
-                <h2>🗳️ ¿Quién es el Impostor?</h2>
-                <p class="instruction-text">Cada jugador debe votar por quien cree que es el impostor</p>
-
-                <div id="voting-container" class="voting-container">
-                    <!-- Botones de votación generados dinámicamente -->
-                </div>
-
-                <div class="vote-counter">
-                    <p>Votos registrados: <span id="vote-count">0</span> / <span id="total-votes">0</span></p>
-                </div>
-
-                <button id="finish-voting-btn" class="btn btn-primary" disabled>🎯 Ver Resultados</button>
-            </div>
-        </section>
-
-        <!-- Fase 6: Resultados -->
-        <section id="results-phase" class="game-phase">
-            <div class="card glass-card results-card">
-                <div id="results-content">
-                    <!-- Contenido dinámico de resultados -->
-                </div>
-                <div class="results-actions">
-                    <button id="new-vote-btn" class="btn btn-secondary">🔄 Nueva Votación</button>
-                    <button id="play-again-btn" class="btn btn-primary">🔁 Jugar de Nuevo</button>
-                    <button id="restart-game-btn" class="btn btn-secondary">🎮 Nuevo Juego</button>
-                </div>
-            </div>
-        </section>
+        </main>
     </div>
 
-    <footer class="game-footer">
-        <p class="footer-text">
-            Página hecha por <span class="footer-author">Anthony Jareth La Torre Velazco</span>
-        </p>
+    <!-- Pie de Página -->
+    <footer class="portal-footer">
+        <div class="footer-content">
+            <p class="footer-text">🚀 Gravity-Gamer © 2026 - ¡Juegos divertidos para todos!</p>
+            <p class="footer-subtext">Diseñado para jugar en grupo desde cualquier dispositivo</p>
+        </div>
     </footer>
-
-    <script src="wordCategories.js"></script>
-    <script src="game.js"></script>
 </body>
 
 </html>

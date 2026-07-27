@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Impostor - Juego de Detectives</title>
+    <meta name="description" content="Juego del impostor - Descubre quién es el impostor entre tus amigos">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="game-header">
+            <a href="../index.html" class="back-home-link">🏠 Menú Principal</a>
+            <div class="logo-container">
+                <img src="img/logo2.png" alt="El Impostor Logo" class="logo-img">
+            </div>
+            <p class="game-subtitle">¿Podrás descubrir quién es el impostor? jajaja</p>
+        </header>
+
+        <!-- Fase 1: Configuración del juego -->
+        <section id="setup-phase" class="game-phase active">
+            <div class="card glass-card">
+                <h2>⚙️ Configurar Juego</h2>
+
+                <div class="form-group">
+                    <label for="player-count">¿Cuántos jugadores?</label>
+                    <input type="text" id="player-count" value="5" class="input-field"
+                        placeholder="Número de jugadores">
+                </div>
+
+                <div id="custom-word-group" class="form-group hidden">
+                    <label for="custom-word">Palabra o Tema Personalizado</label>
+                    <input type="text" id="custom-word" class="input-field" placeholder="Ej: Toy Story, Pizza, etc.">
+                    <p class="helper-text">💡 Modo personalizado activado</p>
+                </div>
+
+                <div id="custom-player-count-group" class="form-group hidden">
+                    <label for="custom-player-count">Número de Jugadores</label>
+                    <input type="number" id="custom-player-count" min="3" max="10" value="5" class="input-field">
+                </div>
+
+                <button id="set-players-btn" class="btn btn-primary">¡Continuar!</button>
+            </div>
+        </section>
+
+        <!-- Fase 2: Selección de Categorías -->
+        <section id="category-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>🎯 Selecciona las Categorías</h2>
+                <p class="instruction-text">Elige los temas de palabras con los que quieres jugar</p>
+
+                <div class="category-controls">
+                    <button id="select-all-btn" class="btn btn-secondary btn-small">✓ Seleccionar Todas</button>
+                    <button id="deselect-all-btn" class="btn btn-secondary btn-small">✗ Deseleccionar Todas</button>
+                </div>
+
+                <div id="categories-container" class="categories-grid">
+                    <!-- Categories will be generated dynamically -->
+                </div>
+
+                <button id="confirm-categories-btn" class="btn btn-primary" disabled>¡Continuar!</button>
+            </div>
+        </section>
+
+        <!-- Fase 3: Ingreso de nombres -->
+        <section id="names-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>👥 Nombres de Jugadores</h2>
+                <div id="player-names-container" class="names-container"></div>
+                <button id="start-game-btn" class="btn btn-primary">¡Iniciar Juego!</button>
+            </div>
+        </section>
+
+        <!-- Fase 4: Revelación de roles -->
+        <section id="reveal-phase" class="game-phase">
+            <div class="card glass-card reveal-card">
+                <div id="reveal-waiting" class="reveal-waiting">
+                    <h2>🎭 Turno de <span id="current-player-name" class="highlight-text"></span></h2>
+                    <p class="instruction-text">Pasa el dispositivo a este jugador y haz clic en el botón</p>
+                    <button id="reveal-role-btn" class="btn btn-primary btn-large">👀 Ver Mi Rol</button>
+                </div>
+
+                <div id="reveal-content" class="reveal-content hidden">
+                    <div id="role-display" class="role-display">
+                        <!-- Contenido dinámico del rol -->
+                    </div>
+                    <button id="next-player-btn" class="btn btn-secondary">➡️ Siguiente Participante</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fase 5: Votación -->
+        <section id="voting-phase" class="game-phase">
+            <div class="card glass-card">
+                <h2>🗳️ ¿Quién es el Impostor?</h2>
+                <p class="instruction-text">Cada jugador debe votar por quien cree que es el impostor</p>
+
+                <div id="voting-container" class="voting-container">
+                    <!-- Botones de votación generados dinámicamente -->
+                </div>
+
+                <div class="vote-counter">
+                    <p>Votos registrados: <span id="vote-count">0</span> / <span id="total-votes">0</span></p>
+                </div>
+
+                <button id="finish-voting-btn" class="btn btn-primary" disabled>🎯 Ver Resultados</button>
+            </div>
+        </section>
+
+        <!-- Fase 6: Resultados -->
+        <section id="results-phase" class="game-phase">
+            <div class="card glass-card results-card">
+                <div id="results-content">
+                    <!-- Contenido dinámico de resultados -->
+                </div>
+                <div class="results-actions">
+                    <button id="new-vote-btn" class="btn btn-secondary">🔄 Nueva Votación</button>
+                    <button id="play-again-btn" class="btn btn-primary">🔁 Jugar de Nuevo</button>
+                    <button id="restart-game-btn" class="btn btn-secondary">🎮 Nuevo Juego</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="game-footer">
+        <p class="footer-text">
+            Página hecha por <span class="footer-author">Anthony Jareth La Torre Velazco</span>
+        </p>
+    </footer>
+
+    <script src="wordCategories.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
